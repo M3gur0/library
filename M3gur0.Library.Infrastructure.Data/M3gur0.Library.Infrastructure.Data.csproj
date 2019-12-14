@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>0.1.0</Version>
+    <Authors>M3gur0</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/M3gur0/library</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/M3gur0/library</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageTags>Domain, Repository pattern</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\M3gur0.Library.Domain\M3gur0.Library.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
