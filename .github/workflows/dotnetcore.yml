@@ -26,4 +26,4 @@ jobs:
       run: dotnet pack M3gur0.Library.Domain --configuration Release -o NuGetPackages
 
     - name: Publish package to NuGet.org
-      run: run: dotnet nuget push ./M3gur0.Library.Domain/NuGetPackages/M3gur0.Library.Domain.1.0.0.$BUILD_NUMBER.nupkg -k $NUGET_API_KEY -s https://api.nuget.org/v3/index.json
+      run: run: dotnet nuget push ./M3gur0.Library.Domain/NuGetPackages/M3gur0.Library.Domain.1.0.0.$(BUILD_NUMBER).nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
