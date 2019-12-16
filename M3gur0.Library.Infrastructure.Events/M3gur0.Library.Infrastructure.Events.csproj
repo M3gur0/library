@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <Authors>M3gur0</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/M3gur0/library</PackageProjectUrl>
@@ -10,7 +10,7 @@
     <PackageIconUrl />
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>Domain, Event sourcing</PackageTags>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\Resources\M3gur0_mini.png">

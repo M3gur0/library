@@ -6,18 +6,18 @@ namespace M3gur0.Library.Infrastructure.Events
     {
         public Event()
         {
-            Id = Guid.NewGuid();
+            EventId = Guid.NewGuid();
             CreateDate = DateTime.UtcNow;
         }
 
-        public Event(Guid id, DateTime createDate)
+        public Event(Guid eventId, DateTime createDate)
         {
-            Id = id;
+            EventId = eventId;
             CreateDate = createDate;
         }
 
-        public Guid Id { get; private set; }
+        public Guid EventId { get; }
 
-        public DateTime CreateDate { get; private set; }
+        public DateTime CreateDate { get; }
     }
 }
