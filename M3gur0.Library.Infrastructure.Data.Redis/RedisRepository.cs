@@ -42,6 +42,12 @@ namespace M3gur0.Library.Infrastructure.Data.Redis
             return Task.FromResult(redis.GetAll().Where(fn));
         }
 
+        public async Task<TEntity> GetSingleByFilter(Expression<Func<TEntity, bool>> predicate)
+        {
+            var fn = predicate.Compile();
+            return await Task.FromResult(redis.GetAll().SingleOrDefault(fn));
+        }
+
         public Task<TEntity> GetSingleById(params object[] keys)
         {
             if (keys.Count() > 1) throw new CompositeKeyinCacheStoreException();

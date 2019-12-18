@@ -21,6 +21,8 @@ namespace M3gur0.Library.Infrastructure.Data.EF
 
         public async Task<IEnumerable<TEntity>> GetByFilter(Expression<Func<TEntity, bool>> predicate) => await set.Where(predicate).ToListAsync();
 
+        public async Task<TEntity> GetSingleByFilter(Expression<Func<TEntity, bool>> predicate) => await set.SingleOrDefaultAsync(predicate);
+
         public async Task<TEntity> GetSingleById(params object[] keys) => await set.FindAsync(keys);
 
         public async Task Add(TEntity entity) => await set.AddAsync(entity);

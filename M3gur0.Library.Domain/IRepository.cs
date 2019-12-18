@@ -9,6 +9,8 @@ namespace M3gur0.Library.Domain
     {
         Task<IEnumerable<TEntity>> GetByFilter(Expression<Func<TEntity, bool>> predicate);
 
+        Task<TEntity> GetSingleByFilter(Expression<Func<TEntity, bool>> predicate);
+
         Task<TEntity> GetSingleById(params object[] keys);
 
         Task Add(TEntity entity);
