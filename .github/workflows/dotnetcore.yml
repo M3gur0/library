@@ -19,8 +19,8 @@ jobs:
     #   with:
     #     token: ${{secrets.github_token}}
 
-    - name: Build with dotnet
-      run: dotnet build M3gur0.Library.Domain --configuration Release
+    # - name: Build with dotnet
+    #   run: dotnet build M3gur0.Library.Domain --configuration Release
 
     - name: Extract tag name
       id: tag
@@ -29,7 +29,7 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           return context.payload.ref.replace(/\/refs\/tags\//, '');
-          
+
     - name: Echo
       run: echo ${{ steps.tag.outputs.result }}
     # - name: Pack with dotnet
