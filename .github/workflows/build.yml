@@ -1,0 +1,21 @@
+name: Build and release to nuget.org
+
+on: 
+  push:
+    branches-ignore:
+      - releases/*
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.100
+
+    - name: Build with dotnet
+      run: dotnet build M3gur0.Library.sln --configuration Release
