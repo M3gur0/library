@@ -22,16 +22,17 @@ jobs:
     # - name: Build with dotnet
     #   run: dotnet build M3gur0.Library.Domain --configuration Release
 
-    - name: Extract tag name
-      id: tag
-      uses: actions/github-script@0.2.0
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          return context.payload.ref.replace(/\/refs\/tags\//, '');
+    - name: Set output
+      id: vars
+      run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
 
-    - name: Echo
-      run: echo ${{ steps.tag.outputs.result }}
+    - name: Check output
+      env:
+        RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
+      run: |
+        echo $RELEASE_VERSION
+        echo ${{ steps.vars.outputs.tag }}
+
     # - name: Pack with dotnet
     #   run: dotnet pack M3gur0.Library.Domain --version-suffix build$BUILD_NUMBER --configuration Release -o NuGetPackages
 
