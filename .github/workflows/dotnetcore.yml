@@ -22,17 +22,9 @@ jobs:
     # - name: Build with dotnet
     #   run: dotnet build M3gur0.Library.Domain --configuration Release
 
-    - name: Set output
-      id: vars
-      run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
-
-    - name: Check output
-      env:
-        RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
+    - name: Check version
       run: |
         echo ${GITHUB_REF##*/}
-        echo $RELEASE_VERSION
-        echo ${{ steps.vars.outputs.tag }}
 
     # - name: Pack with dotnet
     #   run: dotnet pack M3gur0.Library.Domain --version-suffix build$BUILD_NUMBER --configuration Release -o NuGetPackages
