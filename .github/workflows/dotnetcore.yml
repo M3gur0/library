@@ -9,18 +9,18 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     
-    # - name: Setup .NET Core
-    #   uses: actions/setup-dotnet@v1
-    #   with:
-    #     dotnet-version: 3.1.100
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.100
 
     - name: Generate build number
       uses: einaregilsson/build-number@v2 
       with:
         token: ${{secrets.github_token}}
 
-    # - name: Build with dotnet
-    #   run: dotnet build M3gur0.Library.Domain --configuration Release
+    - name: Build with dotnet
+      run: dotnet build M3gur0.Library.sln --configuration Release
 
     - name: Check version
       run: |
@@ -31,8 +31,8 @@ jobs:
     # - name: Pack with dotnet
     #   run: dotnet pack M3gur0.Library.sln --version-suffix build$BUILD_NUMBER --configuration Release -o NuGetPackages
 
-    # - name: Pack with dotnet
-    #   run: dotnet pack M3gur0.Library.sln -p:PackageVersion=${GITHUB_REF##*/} --configuration Release -o NuGetPackages
+    - name: Pack with dotnet
+      run: dotnet pack M3gur0.Library.sln -p:PackageVersion=${GITHUB_REF##*/}$BUILD_NUMBER --configuration Release -o NuGetPackages
 
     # - name: Publish package to NuGet.org
     #   run: dotnet nuget push ./NuGetPackages/M3gur0.Library.Domain.1.0.0-build$BUILD_NUMBER.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
