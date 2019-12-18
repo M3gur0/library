@@ -32,7 +32,7 @@ jobs:
     #   run: dotnet pack M3gur0.Library.sln --version-suffix build$BUILD_NUMBER --configuration Release -o NuGetPackages
 
     - name: Pack with dotnet
-      run: dotnet pack M3gur0.Library.sln -p:PackageVersion=${GITHUB_REF##*/}$BUILD_NUMBER --configuration Release -o NuGetPackages
+      run: dotnet pack M3gur0.Library.sln -p:PackageVersion=${GITHUB_REF##*/}.$BUILD_NUMBER --configuration Release -o NuGetPackages
 
     # - name: Publish package to NuGet.org
     #   run: dotnet nuget push ./NuGetPackages/M3gur0.Library.Domain.1.0.0-build$BUILD_NUMBER.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
