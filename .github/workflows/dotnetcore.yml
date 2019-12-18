@@ -14,16 +14,27 @@ jobs:
       with:
         dotnet-version: 3.1.100
 
-    - name: Generate build number
-      uses: einaregilsson/build-number@v2 
-      with:
-        token: ${{secrets.github_token}}
+    # - name: Generate build number
+    #   uses: einaregilsson/build-number@v2 
+    #   with:
+    #     token: ${{secrets.github_token}}
 
     - name: Build with dotnet
-      run: dotnet build M3gur0.Library.Domain --version-suffix $BUILD_NUMBER --configuration Release
+      run: dotnet build M3gur0.Library.Domain --configuration Release
 
-    - name: Pack with dotnet
-      run: dotnet pack M3gur0.Library.Domain --version-suffix build$BUILD_NUMBER --configuration Release -o NuGetPackages
+    - name: Set output
+      id: vars
+      run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
 
-    - name: Publish package to NuGet.org
-      run: dotnet nuget push ./NuGetPackages/M3gur0.Library.Domain.1.0.0-build$BUILD_NUMBER.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+    - name: Check output
+      env:
+        RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
+      run: |
+        echo $RELEASE_VERSION
+        echo ${{ steps.vars.outputs.tag }}
+
+    # - name: Pack with dotnet
+    #   run: dotnet pack M3gur0.Library.Domain --version-suffix build$BUILD_NUMBER --configuration Release -o NuGetPackages
+
+    # - name: Publish package to NuGet.org
+    #   run: dotnet nuget push ./NuGetPackages/M3gur0.Library.Domain.1.0.0-build$BUILD_NUMBER.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
