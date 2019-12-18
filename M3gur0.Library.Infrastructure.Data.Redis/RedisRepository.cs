@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace M3gur0.Library.Infrastructure.Data.Redis
 {
-    public class RedisRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
+    public class RedisRepository<TEntity> : IReadWriteRepository<TEntity> where TEntity : class, IEntity
     {
         private readonly IRedisTypedClient<TEntity> redis;
         private readonly ILogger<RedisRepository<TEntity>> logger;

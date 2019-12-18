@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace M3gur0.Library.Infrastructure.Data.EF
 {
-    public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
+    public class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity> where TEntity : class, IEntity
     {
-        private readonly DbContext context;
-        private readonly DbSet<TEntity> set;
+        protected readonly DbContext context;
+        protected readonly DbSet<TEntity> set;
 
-        public GenericRepository(DbContext dbContext)
+        public ReadOnlyRepository(DbContext dbContext)
         {
             context = dbContext;
             set = context.Set<TEntity>();
@@ -24,13 +24,5 @@ namespace M3gur0.Library.Infrastructure.Data.EF
         public async Task<TEntity> GetSingleByFilter(Expression<Func<TEntity, bool>> predicate) => await set.SingleOrDefaultAsync(predicate);
 
         public async Task<TEntity> GetSingleById(params object[] keys) => await set.FindAsync(keys);
-
-        public async Task Add(TEntity entity) => await set.AddAsync(entity);
-
-        public void Update(TEntity entity) => context.Entry(entity).State = EntityState.Modified;
-
-        public async Task Delete(params object[] keys) => set.Remove(await set.FindAsync(keys));
-
-        public async Task Save() => await context.SaveChangesAsync();
     }
 }
