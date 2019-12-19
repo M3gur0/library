@@ -21,6 +21,7 @@ jobs:
       uses: einaregilsson/build-number@v2 
       with:
         token: ${{secrets.github_token}}
+        prefix: pre
 
     - name: Build with dotnet
       run: dotnet build M3gur0.Library.sln --configuration Release
