@@ -29,14 +29,6 @@ jobs:
         echo ${GITHUB_REF##*/}
         echo $dev_build_number
 
-      - name: Another tag
-        uses: olegtarasov/get-tag@j1
-        id: tag
-      - name: Some other step
-        with:
-            tagname: ${{ steps.tag.outputs.tag }}
-        run: |
-          echo $tag
     # - name: Build with dotnet
     #   run: dotnet build M3gur0.Library.sln --configuration Release
     
