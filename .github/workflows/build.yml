@@ -4,6 +4,7 @@ on:
   push:
     branches-ignore:
       - releases/*
+      - master
 
 jobs:
   build:
@@ -16,6 +17,20 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.100
-
-    - name: Build with dotnet
-      run: dotnet build M3gur0.Library.sln --configuration Release
+    
+    - name: Generate build number
+      uses: einaregilsson/build-number@v2 
+      with:
+        token: ${{secrets.github_token}}
+        prefix: dev
+  
+    - name: Check version
+      run: |
+        echo ${GITHUB_REF##*/}
+        echo $dev_build_number
+      
+    # - name: Build with dotnet
+    #   run: dotnet build M3gur0.Library.sln --configuration Release
+    
+    # - name: Generate nuget packages (pre)
+    #   run: dotnet pack M3gur0.Library.sln -p:PackageVersion=${GITHUB_REF##*/}.pre-$dev_build_number --configuration Release -o NuGetPackages
