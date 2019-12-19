@@ -31,10 +31,10 @@ jobs:
         echo ${GITHUB_REF##*/}
         echo ${GITHUB_REF}
         echo ${GITHUB_HEAD_REF}
-        # echo $BUILD_NUMBER
+        # echo $pre_build_number
 
     - name: Pack with dotnet
-      run: dotnet pack M3gur0.Library.sln -p:PackageVersion=${GITHUB_REF##*/}-pre-${pre_build_number} --configuration Release -o NuGetPackages
+      run: dotnet pack M3gur0.Library.sln -p:PackageVersion=${GITHUB_REF##*/}-pre-$pre_build_number --configuration Release -o NuGetPackages
 
     # - name: Publish package to NuGet.org
     #   run: ls NuGetPackages/*.nupkg | xargs -i dotnet nuget push -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json {} 
