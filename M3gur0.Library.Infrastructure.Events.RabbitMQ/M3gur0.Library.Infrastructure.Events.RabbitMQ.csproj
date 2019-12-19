@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Version>1.1.1</Version>
@@ -22,9 +22,12 @@
     <ProjectReference Include="..\M3gur0.Library.Infrastructure.Events\M3gur0.Library.Infrastructure.Events.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Resources\M3gur0_mini.png">
+    <None Include="..\Resources\M3gur0_mini.png" Link="properties\M3gur0_mini.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="properties\" />
   </ItemGroup>
 </Project>

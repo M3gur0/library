@@ -22,10 +22,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\Resources\M3gur0_mini.png">
+    <None Include="..\Resources\M3gur0_mini.png" Link="properties\M3gur0_mini.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="properties\" />
   </ItemGroup>
 
 </Project>
