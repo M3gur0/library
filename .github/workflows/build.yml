@@ -1,9 +1,9 @@
-name: Build and release (pre) to nuget.org
+name: Build
 
 on: 
   push:
-    branches:
-      - pre-*
+    branches-ignore:
+      - releases/*
 
 jobs:
   build:
@@ -17,21 +17,5 @@ jobs:
       with:
         dotnet-version: 3.1.100
 
-    # - name: Generate build number
-    #   uses: einaregilsson/build-number@v2 
-    #   with:
-    #     token: ${{secrets.github_token}}
-
-    # - name: Build with dotnet
-    #   run: dotnet build M3gur0.Library.sln --configuration Release
-
-    - name: Check version
-      run: |
-        echo ${GITHUB_REF##*/}
-        # echo $BUILD_NUMBER
-
-    # - name: Pack with dotnet
-    #   run: dotnet pack M3gur0.Library.sln -p:PackageVersion=${GITHUB_REF##*/}.$BUILD_NUMBER --configuration Release -o NuGetPackages
-
-    # - name: Publish package to NuGet.org
-    #   run: ls NuGetPackages/*.nupkg | xargs -i dotnet nuget push -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json {} 
+    - name: Build with dotnet
+      run: dotnet build M3gur0.Library.sln --configuration Release
