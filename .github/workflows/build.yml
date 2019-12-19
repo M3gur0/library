@@ -28,8 +28,9 @@ jobs:
       run: |
         echo ${GITHUB_REF##*/}
         echo $dev_build_number
-    
-      - uses: olegtarasov/get-tag@j1
+
+      - name: Another tag
+        uses: olegtarasov/get-tag@j1
         id: tag
       - name: Some other step
         with:
