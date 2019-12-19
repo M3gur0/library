@@ -30,6 +30,8 @@ jobs:
     - name: Check version
       run: |
         echo ${GITHUB_REF##*/}
+        echo ${GITHUB_REF}
+        echo ${GITHUB_HEAD_REF}
         # echo $BUILD_NUMBER
 
     # - name: Pack with dotnet
