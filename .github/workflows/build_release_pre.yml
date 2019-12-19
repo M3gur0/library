@@ -1,0 +1,10 @@
+- name: Generate build number
+uses: einaregilsson/build-number@v2 
+with:
+  token: ${{secrets.github_token}}
+  prefix: dev
+
+- name: Check version
+run: |
+  echo ${GITHUB_REF##*/}
+  echo $dev_build_number
