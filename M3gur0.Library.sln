@@ -18,7 +18,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "M3gur0.Library.Infrastructure.Data.Redis", "M3gur0.Library.Infrastructure.Data.Redis\M3gur0.Library.Infrastructure.Data.Redis.csproj", "{847F0A9A-A8C7-485F-B779-5A7FA0E076F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M3gur0.Library.Infrastructure.Data.EF", "M3gur0.Library.Infrastructure.Data.EF\M3gur0.Library.Infrastructure.Data.EF.csproj", "{B41BF8E1-7341-4F75-8422-BF6755EA9AF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "M3gur0.Library.Infrastructure.Data.EF", "M3gur0.Library.Infrastructure.Data.EF\M3gur0.Library.Infrastructure.Data.EF.csproj", "{B41BF8E1-7341-4F75-8422-BF6755EA9AF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M3gur0.Library.WebAPI", "M3gur0.Library.WebAPI\M3gur0.Library.WebAPI.csproj", "{FDFCA686-99C5-4E01-A1C8-ADCAFE92E016}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M3gur0.Library.Infrastructure.Mediator", "M3gur0.Library.Infrastructure.Mediator\M3gur0.Library.Infrastructure.Mediator.csproj", "{56169774-1CB5-4440-A8B8-2E6B5E37489F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +54,14 @@ Global
 		{B41BF8E1-7341-4F75-8422-BF6755EA9AF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B41BF8E1-7341-4F75-8422-BF6755EA9AF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B41BF8E1-7341-4F75-8422-BF6755EA9AF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDFCA686-99C5-4E01-A1C8-ADCAFE92E016}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDFCA686-99C5-4E01-A1C8-ADCAFE92E016}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDFCA686-99C5-4E01-A1C8-ADCAFE92E016}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDFCA686-99C5-4E01-A1C8-ADCAFE92E016}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56169774-1CB5-4440-A8B8-2E6B5E37489F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56169774-1CB5-4440-A8B8-2E6B5E37489F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56169774-1CB5-4440-A8B8-2E6B5E37489F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56169774-1CB5-4440-A8B8-2E6B5E37489F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

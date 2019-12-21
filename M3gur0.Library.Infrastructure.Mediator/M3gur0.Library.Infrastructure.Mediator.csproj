@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>M3gur0</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>M3gur0_mini.png</PackageIcon>
+    <PackageIconUrl />
+    <PackageProjectUrl>https://github.com/M3gur0/library</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/M3gur0/library</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Mediatr, Pipelines, validation, FluentValidation</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="8.6.0" />
+    <PackageReference Include="MediatR" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\M3gur0.Library.Domain\M3gur0.Library.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Resources\M3gur0_mini.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
