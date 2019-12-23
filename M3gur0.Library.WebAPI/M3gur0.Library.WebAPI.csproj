@@ -1,34 +1,49 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <Authors>M3gur0</Authors>
-    <Copyright></Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/M3gur0/library</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/M3gur0/library</RepositoryUrl>
     <PackageIcon>M3gur0_mini.png</PackageIcon>
     <PackageIconUrl />
-    <RepositoryUrl>https://github.com/M3gur0/library</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
     <PackageTags>WebAPI, dotnetcore, Utils</PackageTags>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.4" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="FluentValidation" Version="8.6.0" />
     <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="3.1.0" />
+    <PackageReference Include="MediatR" Version="7.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
+    <PackageReference Include="Serilog" Version="2.9.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\M3gur0.Library.Domain\M3gur0.Library.Domain.csproj" />
+    <ProjectReference Include="..\M3gur0.Library.Infrastructure.Data.EF\M3gur0.Library.Infrastructure.Data.EF.csproj" />
+    <ProjectReference Include="..\M3gur0.Library.Infrastructure.Mediator\M3gur0.Library.Infrastructure.Mediator.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\Resources\M3gur0_mini.png" Link="properties\M3gur0_mini.png">
+    <None Include="..\Resources\M3gur0_mini.png" Link="Properties\M3gur0_mini.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="properties\" />
-  </ItemGroup>
 
 </Project>
