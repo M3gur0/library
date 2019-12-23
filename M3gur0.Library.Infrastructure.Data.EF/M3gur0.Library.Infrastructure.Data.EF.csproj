@@ -11,6 +11,7 @@
     <PackageIconUrl />
     <RepositoryType>git</RepositoryType>
     <PackageTags>EFCore Repository, Repository pattern</PackageTags>
+    
   </PropertyGroup>
 
   <ItemGroup>

@@ -13,7 +13,7 @@ namespace M3gur0.Library.Infrastructure.Events.RabbitMQ
         private readonly int retryCount;
         private IConnection connection;
         private bool disposed = false;
-        private object connectionLocker = new object();
+        private readonly object connectionLocker = new object();
 
         public DefaultRabbitMQPersistentConnection(IConnectionFactory connectionFactory, int retryCount = 5)
         {

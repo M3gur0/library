@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace M3gur0.Library.Infrastructure.Events.RabbitMQ
 {
-    public abstract class EventBusRabbitMQ : IEventBus, IDisposable
+    public class EventBusRabbitMQ : IEventBus, IDisposable
     {
-        protected abstract string BrokerName { get; }
-        protected abstract string AutofacScopeName { get; }
+        private readonly string brokerName;
+        private readonly string autofacScopeName;
 
         private readonly IRabbitMQPersistentConnection persistentConnection;
         private readonly IEventBusSubscriptionsManager subscriptionsManager;
@@ -24,13 +24,15 @@ namespace M3gur0.Library.Infrastructure.Events.RabbitMQ
 
         private IModel consumerChannel;
 
-        public EventBusRabbitMQ(IRabbitMQPersistentConnection rabbitMQPersistentConnection, IEventBusSubscriptionsManager eventBusSubscriptionsManager, ILifetimeScope lifetimeScope, string subscriptionQueueName = null, int retryCount = 5)
+        public EventBusRabbitMQ(IRabbitMQPersistentConnection rabbitMQPersistentConnection, IEventBusSubscriptionsManager eventBusSubscriptionsManager, ILifetimeScope lifetimeScope, string brokerName, string scopeName, string subscriptionQueueName = null, int retryCount = 5)
         {
             persistentConnection = rabbitMQPersistentConnection;
             subscriptionsManager = eventBusSubscriptionsManager;
             autofac = lifetimeScope;
             queueName = subscriptionQueueName;
             this.retryCount = retryCount;
+            this.brokerName = brokerName;
+            autofacScopeName = scopeName;
 
             consumerChannel = CreateConsumerChannel();
         }
@@ -47,7 +49,7 @@ namespace M3gur0.Library.Infrastructure.Events.RabbitMQ
 
             using (var channel = persistentConnection.CreateModel())
             {
-                channel.ExchangeDeclare(exchange: BrokerName, type: "direct");
+                channel.ExchangeDeclare(exchange: brokerName, type: "direct");
 
                 var message = JsonConvert.SerializeObject(@event);
                 var body = Encoding.UTF8.GetBytes(message);
@@ -57,7 +59,7 @@ namespace M3gur0.Library.Infrastructure.Events.RabbitMQ
                     var properties = channel.CreateBasicProperties();
                     properties.DeliveryMode = 2; // persistent
 
-                    channel.BasicPublish(exchange: BrokerName, routingKey: eventName, mandatory: true, basicProperties: properties, body: body);
+                    channel.BasicPublish(exchange: brokerName, routingKey: eventName, mandatory: true, basicProperties: properties, body: body);
                     _ = await Task.FromResult(true);
                 });
             }
@@ -80,7 +82,7 @@ namespace M3gur0.Library.Infrastructure.Events.RabbitMQ
             if (!persistentConnection.IsConnected) persistentConnection.TryConnect();
 
             var channel = persistentConnection.CreateModel();
-            channel.ExchangeDeclare(exchange: BrokerName, type: "direct");
+            channel.ExchangeDeclare(exchange: brokerName, type: "direct");
             channel.QueueDeclare(queue: queueName, durable: true, exclusive: false, autoDelete: false, arguments: null);
 
             channel.CallbackException += (sender, e) =>
@@ -102,7 +104,7 @@ namespace M3gur0.Library.Infrastructure.Events.RabbitMQ
 
             using (var channel = persistentConnection.CreateModel())
             {
-                channel.QueueBind(queue: queueName, exchange: BrokerName, routingKey: eventName);
+                channel.QueueBind(queue: queueName, exchange: brokerName, routingKey: eventName);
             }
         }
 
@@ -131,7 +133,7 @@ namespace M3gur0.Library.Infrastructure.Events.RabbitMQ
             /// TODO: log and break
             if (!subscriptionsManager.HasSubscriptionsForEvent(eventName)) return;
 
-            using (var scope = autofac.BeginLifetimeScope(AutofacScopeName))
+            using (var scope = autofac.BeginLifetimeScope(autofacScopeName))
             {
                 var subscriptions = subscriptionsManager.GetHandlersForEvent(eventName);
 
